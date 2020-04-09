@@ -1,6 +1,31 @@
+v4.0.9
+- Japanese, Korean, Traditional Chinese, and Simplified Chinese localizations
+v4.0.8
+- Security updates
+v4.0.7
+- 64-bit support
+- Bugfixes
+v4.0.6
+- Support for SPICE server mouse mode
+- Bugfix to sshlib for sha2-256 and sha2-512 keys
+v4.0.5
+- Bugfixes
+- Logcat copy from previous runs as well
+v4.0.4
+- Fix for scrolling in Single Handed mode
+- Much improved logging of SPICE errors
+v4.0.3
+- Updated spice library
+- Updated gnutls
+- Updated sshlib
+v4.0.2
+- Fixes for widget names
+- Fixes for Fit-to-screen scaling
+- Default Input Mode support
 v4.0.1
 - Text contrast fix for certain devices
 - Targeting new APIs 
+- Fix for Menu + immersive mode live-lock on some devices
 v4.0.0
 - Input mode bugfixes
 - Security and protocol library updates

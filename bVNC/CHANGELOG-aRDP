@@ -1,6 +1,33 @@
+v4.0.9
+- Japanese, Korean, Traditional Chinese, and Simplified Chinese localizations
+v4.0.8
+- Security updates
+v4.0.7
+- 64-bit support
+- XRDP compatibility fix
+- Bugfixes
+v4.0.6
+- Bugfix for FreeRDP ignoring certs
+- Bugfix to sshlib for sha2-256 and sha2-512 keys
+- Bugfix for passwordless RDP
+v4.0.5
+- Bugfixes
+- Logcat copy from previous runs as well
+v4.0.4
+- Fix for scrolling in Single Handed mode
+v4.0.3
+- Fix for SD card redirection
+- Updated FreeRDP
+- Updated OpenSSL
+- Updated sshlib
+v4.0.2
+- Fixes for widget names
+- Fixes for Fit-to-screen scaling
+- Default Input Mode support
 v4.0.1
 - Text contrast fix for certain devices
 - Targeting new APIs 
+- Fix for Menu + immersive mode live-lock on some devices
 v4.0.0
 - Input mode bugfixes
 - FreeRDP bugfixes

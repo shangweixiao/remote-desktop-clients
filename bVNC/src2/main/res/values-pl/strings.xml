@@ -122,6 +122,7 @@
 
     <string name="ctrl_alt_del">Ctrl-Alt-Delete</string>
 
+    <string name="default_input_mode">Default Input Mode</string>
     <string name="delete_connection">Usuń połączenie</string>
     <string name="delete_key"/>
     <string name="delete_key_list"/>
@@ -145,7 +146,7 @@
     <string name="error_pick_correct_item">Upewnij się, że wybrałeś poprawny rodzaj połączenia.</string>
     <string name="error_rdp_authentication_failed">Uwierzytelnianie RDP nie powiodło się. Sprawdź nazwę użytkownika i hasło RDP i spróbuj ponownie.</string>
     <string name="error_rdp_connection_failed">Połączenie RDP nie powiodło się! Połączenie mogło zostać przerwane, serwer RDP mógł zostać wyłączony lub sesja mogła zostać zamknięta.</string>
-    <string name="error_rdp_unable_to_connect">Nie można połączyć do serwera RDP lub wystąpił błąd uwierzytelniania. Upewnij się, że ustawienia i dane serwera są prawidłowe, serwer i RDP są włączone i serwer jest połączony z tą samą siecią.</string>
+    <string name="error_rdp_unable_to_connect">Nie można połączyć do serwera RDP . Upewnij się, że ustawienia i dane serwera są prawidłowe, serwer i RDP są włączone i serwer jest połączony z tą samą siecią.</string>
     <string name="error_security_type">Serwer nie obsługuje tego rodzaju zabezpieczenia.</string>
     <string name="error_spice_unable_to_connect">Nie udało się połączyć lub uwierzytelnić. Sprawdź adres serwera, hasło, ważność certyfikatu i temat.</string>
     <string name="error_ssh_could_not_exec_command">Nie można zdalnie wykonać komendy.</string>
@@ -557,7 +558,9 @@ Known issues:
 
     <string name="shift_check">Shift</string>
 
-    <string name="shortcut_label">Połączenie VNC</string>
+    <string name="shortcut_label_vnc">Połączenie VNC</string>
+    <string name="shortcut_label_rdp">Połączenie RDP</string>
+    <string name="shortcut_label_spice">Połączenie SPICE</string>
 
     <string name="showkbd_label">Klawiatura</string>
 
@@ -579,7 +582,7 @@ Known issues:
     <string name="spice_ca_cert_path_hint">Ścieżka do pliku urzędu certyfikacji</string>
     <string name="spice_ca_file_error_reading">Wystąpił błąd podczas odczytywania pliku CA. Upewnij się, że jest on odczytywalny.</string>
     <string name="spice_ca_file_not_found">Nie znaleziono pliku. Upewnij się, że w pliku tekstowym znajduje się prawidłowa nazwa pliku (no. /sdcard/ca-cert.pem).</string>
-    <string name="spice_cert_subject_hint">Temat certyfikatu</string>
+    <string name="cert_subject">Temat certyfikatu</string>
     <string-array name="spice_connection_type">
         <item>\@string/connection_type_spice</item>
         <item>\@string/connection_type_spice_over_ssh</item>
@@ -698,6 +701,4 @@ Known issues:
     </string-array>
 
     <string name="vnc_server_empty">Pole serwera lub portu VNC jest puste. Nie można połączyć.</string>
-
-    <string name="warning_cert_does_not_match"/>
 </resources>

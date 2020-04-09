@@ -19,12 +19,13 @@
  */
 
 package com.iiordanov.bVNC;
+import com.undatech.opaque.RemoteClientLibConstants;
 
 /**
  * Keys for intent values
  */
 public class Constants {
-    
+
     public static final int SDK_INT = android.os.Build.VERSION.SDK_INT;
 
     public static final int CONN_TYPE_PLAIN        = 0;
@@ -37,6 +38,7 @@ public class Constants {
     public static final int SOCKET_CONN_TIMEOUT = 30 * 1000; //30 sec
     
     public static final int DEFAULT_SSH_PORT = 22;
+    public static final int LOGCAT_MAX_LINES = 500;
     public static volatile int DEFAULT_PROTOCOL_PORT = 5900;
     public static final int DEFAULT_VNC_PORT = 5900;
     public static final int DEFAULT_RDP_PORT = 3389;
@@ -90,15 +92,16 @@ public class Constants {
     
     public static final int DIALOG_X509_CERT       = 1;
     public static final int DIALOG_SSH_CERT        = 2;
-    public static final int DIALOG_RDP_CERT        = 3;
+    public static final int DIALOG_RDP_CERT        = RemoteClientLibConstants.DIALOG_RDP_CERT;
     public static final int SPICE_CONNECT_SUCCESS  = 4;
     public static final int SPICE_CONNECT_FAILURE  = 5;
     public static final int DIALOG_STUNNEL_CERT    = 6;
-    public static final int RDP_CONNECT_FAILURE    = 7;
-    public static final int RDP_UNABLE_TO_CONNECT  = 8;
-    public static final int RDP_AUTH_FAILED        = 9;
+    public static final int RDP_CONNECT_FAILURE    = RemoteClientLibConstants.RDP_CONNECT_FAILURE;
+    public static final int RDP_UNABLE_TO_CONNECT  = RemoteClientLibConstants.RDP_UNABLE_TO_CONNECT;
+    public static final int RDP_AUTH_FAILED        = RemoteClientLibConstants.RDP_AUTH_FAILED;
     public static final int GET_PASSWORD           = 10;
     public static final int GET_VERIFICATIONCODE   = 11;
+    public static final int SERVER_CUT_TEXT        = RemoteClientLibConstants.SERVER_CUT_TEXT;
     public static final int PRO_FEATURE            = 99;
 
     public static final int EXTRA_KEYS_OFF         = 0;
@@ -207,7 +210,8 @@ public class Constants {
     public static final String forceLandscapeTag = "forceLandscape";
     public static final String rAltAsIsoL3ShiftTag = "rAltAsIsoL3Shift";
     public static final String leftHandedModeTag = "leftHandedModeTag";
-    
+    public static final String defaultInputMethodTag = "defaultInputMethod";
+
     public static final String ACTION_USB_PERMISSION = "com.iiordanov.aSPICE.USB_PERMISSION";
     public static final int usbDeviceTimeout = 5000;
     public static final int usbDevicePermissionTimeout = 15000;

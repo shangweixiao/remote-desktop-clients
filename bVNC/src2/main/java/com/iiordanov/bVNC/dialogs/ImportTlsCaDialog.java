@@ -46,7 +46,8 @@ import com.iiordanov.freebVNC.*;
 import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
-import com.iiordanov.freeaSPICE.*;;
+import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 
 /**
  * @author Iordan K Iordanov

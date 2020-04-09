@@ -23,10 +23,10 @@ package com.iiordanov.bVNC;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.widget.ImageView;
-import android.util.Log;
+
+import com.undatech.opaque.RfbConnectable;
 
 /**
  * Abstract interface between the VncCanvas and the bitmap and pixel data buffers that actually contain
@@ -100,7 +100,11 @@ abstract public class AbstractBitmapData {
      * the bitmap would be smaller than the screen
      */
     float getMinimumScale() {
-        return Math.min((float)vncCanvas.getWidth()/bitmapwidth, (float)vncCanvas.getHeight()/bitmapheight);
+        return Math.min((float)vncCanvas.getWidth()/framebufferwidth, (float)vncCanvas.getHeight()/framebufferheight);
+    }
+
+    boolean widthRatioLessThanHeightRatio() {
+        return (float)vncCanvas.getWidth()/framebufferwidth < vncCanvas.getHeight()/framebufferheight;
     }
 
     /**

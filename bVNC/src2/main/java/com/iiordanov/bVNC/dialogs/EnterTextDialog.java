@@ -20,8 +20,6 @@
 
 package com.iiordanov.bVNC.dialogs;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 
 import com.iiordanov.bVNC.input.RemoteKeyboard;
@@ -42,6 +40,7 @@ import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
 import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 
 /**
  * @author Michael A. MacDonald

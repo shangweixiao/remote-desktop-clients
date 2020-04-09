@@ -1,11 +1,9 @@
 package com.iiordanov.bVNC.input;
 
 import android.os.Handler;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 
-import com.iiordanov.bVNC.RfbConnectable;
 import com.iiordanov.bVNC.RemoteCanvas;
+import com.undatech.opaque.RfbConnectable;
 
 public class RemoteRdpPointer extends RemotePointer {
     private static final String TAG = "RemoteRdpPointer";
@@ -110,7 +108,7 @@ public class RemoteRdpPointer extends RemotePointer {
             if (prevPointerMask != 0 && prevPointerMask != pointerMask) {
                 protocomm.writePointerEvent(pointerX, pointerY, 
                                             combinedMetaState,
-                                            prevPointerMask & ~POINTER_DOWN_MASK);
+                                            prevPointerMask & ~POINTER_DOWN_MASK, false);
             }
             prevPointerMask = pointerMask;
         }
@@ -132,7 +130,7 @@ public class RemoteRdpPointer extends RemotePointer {
         }
         canvas.invalidateMousePosition();
         
-        protocomm.writePointerEvent(pointerX, pointerY, combinedMetaState, pointerMask);
+        protocomm.writePointerEvent(pointerX, pointerY, combinedMetaState, pointerMask, false);
     }
 
 }

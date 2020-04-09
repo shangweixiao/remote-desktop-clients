@@ -49,6 +49,7 @@ import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
 import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 
 /**
  * @author Iordan Iordanov
@@ -71,6 +72,13 @@ public class ConnectionBean extends AbstractConnectionBean implements Comparable
     };
     ConnectionBean(Context context)
     {
+        String inputMode = InputHandlerDirectSwipePan.ID;
+        if (context != null) {
+            inputMode = Utils.querySharedPreferenceString(context, Constants.defaultInputMethodTag,
+                    InputHandlerDirectSwipePan.ID);
+        } else {
+            android.util.Log.e(TAG, "Failed to query default input method, context is null.");
+        }
         set_Id(0);
         setAddress("");
         setPassword("");
@@ -113,7 +121,7 @@ public class ConnectionBean extends AbstractConnectionBean implements Comparable
         setColorModel(COLORMODEL.C24bit.nameString());
         setPrefEncoding(RfbProto.EncodingTight);
         setScaleMode(ScaleType.MATRIX);
-        setInputMode(InputHandlerDirectSwipePan.ID);
+        setInputMode(inputMode);
         setUseDpadAsArrows(true);
         setRotateDpad(false);
         setUsePortrait(false);
@@ -203,7 +211,8 @@ public class ConnectionBean extends AbstractConnectionBean implements Comparable
     }
     
     static ConnectionBean createLoadFromUri(Uri dataUri, Context ctx)
-    {    
+    {
+        android.util.Log.d(TAG, "Creating connection from URI");
     	ConnectionBean connection = new ConnectionBean(ctx);
     	if (dataUri == null) return connection;
 		Database database = new Database(ctx);

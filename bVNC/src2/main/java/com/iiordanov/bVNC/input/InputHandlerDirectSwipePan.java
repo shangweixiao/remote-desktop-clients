@@ -20,7 +20,6 @@
 
 package com.iiordanov.bVNC.input;
 
-import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.os.Vibrator;
 
@@ -30,6 +29,7 @@ import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
 import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 import com.iiordanov.bVNC.RemoteCanvas;
 import com.iiordanov.bVNC.RemoteCanvasActivity;
 
@@ -37,8 +37,9 @@ public class InputHandlerDirectSwipePan extends InputHandlerGeneric {
 	static final String TAG = "InputHandlerDirectSwipePan";
 	public static final String ID = "TOUCH_ZOOM_MODE";
 	
-	public InputHandlerDirectSwipePan(RemoteCanvasActivity activity, RemoteCanvas canvas, Vibrator myVibrator) {
-		super(activity, canvas, myVibrator);
+	public InputHandlerDirectSwipePan(RemoteCanvasActivity activity, RemoteCanvas canvas,
+									  RemotePointer pointer, Vibrator myVibrator) {
+		super(activity, canvas, pointer, myVibrator);
 	}
 
 	/*

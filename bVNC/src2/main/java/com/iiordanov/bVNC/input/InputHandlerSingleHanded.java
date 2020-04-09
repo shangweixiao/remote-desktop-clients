@@ -33,12 +33,13 @@ import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
 import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 import com.iiordanov.bVNC.RemoteCanvas;
 import com.iiordanov.bVNC.RemoteCanvasActivity;
 import com.iiordanov.bVNC.input.RemotePointer;
 
 public class InputHandlerSingleHanded extends InputHandlerDirectSwipePan {
-	static final String TAG = "InputHandlerSingleHanded";
+	static final String TAG = "InputHandlerSingleHand";
 	public static final String ID = "SINGLE_HANDED_MODE";
 	private RelativeLayout singleHandOpts;
 	private ImageButton dragModeButton;
@@ -52,8 +53,9 @@ public class InputHandlerSingleHanded extends InputHandlerDirectSwipePan {
 	private int eventStartX, eventStartY, eventAction, eventMeta;
 	private boolean needInitPan;
 	
-	public InputHandlerSingleHanded(RemoteCanvasActivity activity, RemoteCanvas canvas, Vibrator myVibrator) {
-		super(activity, canvas, myVibrator);
+	public InputHandlerSingleHanded(RemoteCanvasActivity activity, RemoteCanvas canvas,
+									RemotePointer pointer, Vibrator myVibrator) {
+		super(activity, canvas, pointer, myVibrator);
 		initializeButtons();
 	}
 
@@ -102,6 +104,7 @@ public class InputHandlerSingleHanded extends InputHandlerDirectSwipePan {
 		scrollButton.setOnClickListener(new OnClickListener () {
 			@Override
 			public void onClick(View arg0) {
+				//android.util.Log.d(TAG, "scrollButton clicked. Setting inSwiping to true.");
 				startNewSingleHandedGesture();
 				canvas.cursorBeingMoved = true;
 				inSwiping = true;
@@ -224,6 +227,7 @@ public class InputHandlerSingleHanded extends InputHandlerDirectSwipePan {
 		
 		// Otherwise, handle scrolling and zooming here.
 		if (inSwiping) {
+			//android.util.Log.d(TAG, "inSwiping");
 			scrollUp    = false;
 			scrollDown  = false;
 			scrollLeft  = false;
@@ -253,6 +257,7 @@ public class InputHandlerSingleHanded extends InputHandlerDirectSwipePan {
 			} else
 				accumulatedScroll = 0;
         } else if (inScaling) {
+            //android.util.Log.d(TAG, "inScaling");
             float scaleFactor = 1.0f + distanceY*0.01f;             
             if (canvas != null && canvas.canvasZoomer != null) {
                 float zoomFactor = canvas.canvasZoomer.getZoomFactor();

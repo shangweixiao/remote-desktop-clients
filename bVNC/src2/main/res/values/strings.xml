@@ -104,7 +104,7 @@
         <item>@string/connection_type_vnc_over_vencrypt</item>
         <item>@string/connection_type_vnc_over_stunnel</item>
     </string-array>
-    <string name="connection_type_caption">Conn. Type</string>
+    <string name="connection_type_caption">Connection Type</string>
     <string name="connection_type_rdp">RDP</string>
     <string name="connection_type_rdp_over_ssh">RDP over SSH</string>
     <string name="connection_type_spice">SPICE</string>
@@ -122,6 +122,7 @@
 
     <string name="ctrl_alt_del">Ctrl-Alt-Del</string>
 
+    <string name="default_input_mode">Default Input Mode</string>
     <string name="delete_connection">Delete Connection</string>
     <string name="delete_key">Delete Selected Key</string>
     <string name="delete_key_list">Delete Key List</string>
@@ -145,7 +146,7 @@
     <string name="error_pick_correct_item">Please ensure you have picked the right item in Connection Type.</string>
     <string name="error_rdp_authentication_failed">RDP Authentication failed! Please check the RDP username and password and try again.</string>
     <string name="error_rdp_connection_failed">RDP Connection failed! Either network connectivity was interrupted, the RDP server was turned off or disabled, or your session was taken over.</string>
-    <string name="error_rdp_unable_to_connect">Could not connect to RDP server or authentication failed! Please ensure RDP Server setting and credentials are correct, the server is turned on, RDP is enabled, and that the server is on the same network as this device.</string>
+    <string name="error_rdp_unable_to_connect">Could not connect to RDP server! Please ensure RDP Server setting is correct, the server is turned on, RDP is enabled, and that the server is on the same network as this device.</string>
     <string name="error_security_type">Server did not offer supported security type.</string>
     <string name="error_spice_unable_to_connect">Unable to connect or authenticate, please check server address, password, and cert authority and subject.</string>
     <string name="error_ssh_could_not_exec_command">Could not execute remote command.</string>
@@ -565,7 +566,9 @@ Known issues:
 
     <string name="shift_check">Shift</string>
 
-    <string name="shortcut_label">VNC Connection</string>
+    <string name="shortcut_label_vnc">VNC Connection</string>
+    <string name="shortcut_label_rdp">RDP Connection</string>
+    <string name="shortcut_label_spice">SPICE Connection</string>
 
     <string name="showkbd_label">Keyboard</string>
 
@@ -587,7 +590,7 @@ Known issues:
     <string name="spice_ca_cert_path_hint">Path to cert authority file</string>
     <string name="spice_ca_file_error_reading">Error reading CA file. Please ensure it is readable.</string>
     <string name="spice_ca_file_not_found">File not found. Please enter a valid file name in the text field (e.g. /sdcard/ca-cert.pem).</string>
-    <string name="spice_cert_subject_hint">Certificate Subject</string>
+    <string name="cert_subject">Certificate Subject</string>
     <string-array name="spice_connection_type">
         <item>@string/connection_type_spice</item>
         <item>@string/connection_type_spice_over_ssh</item>
@@ -700,4 +703,23 @@ Known issues:
     <string name="vnc_server_empty">VNC Server or port empty. Cannot connect!</string>
 
     <string name="warning_cert_does_not_match">WARNING: The saved x509 certificate or passed in signature does not match the current server certificate! This could be a man-in-the-middle attack. If you are aware of the key change you may proceed. </string>
+    <string name="copy_logcat">Copy Logcat</string>
+    <string name="log_copied">Logcat copied to clipboard. You can now paste it in an email or on the support forum. Please look through for any personal data before posting.</string>
+    <string name="info_set_touchpad_input_mode">The server reports that it does not support Client Mode Mouse Input, and the current mouse input mode will not work correctly. If this persists, make sure spice tools is installed in the virtual machine or switch to Simulated Touchpad Input Mode from the Menu.</string>
+    <string name="ssh_tunnel_settings">SSH Tunnel Settings</string>
+    <string name="vnc_connection_settings">VNC Connection Settings</string>
+    <string name="show_advanced_settings">Show Advanced Settings</string>
+    <string name="use_no_compression_for_local_connections">No compression (local connections, Hextile encoding)</string>
+    <string name="rdp_connection_settings">RDP Connection Settings</string>
+    <string name="local_device_tweaks">Local Device Tweaks</string>
+    <string name="spice_connection_settings">SPICE Connection Settings</string>
+    <string name="ca_subject">Enter certificate subject name here. May not be needed if the cert common name (CN) matches the server hostname.</string>
+    <string name="path_to_ca">Enter a file path (for example /sdcard/ca-cert.pem) and tap Import to load your Certificate Authority.</string>
+    <string name="paste_ca">Enter the Certificate Authority here if you are not importing it as a file.</string>
+    <string name="cert_issuer">Certificate Issuer</string>
+    <string name="cert_fingerprint">Certificate Fingerprint</string>
+    <string name="error">Error</string>
+    <string name="panning">Panning Screen</string>
+    <string name="copy_of">Copy of</string>
+    <string name="ssh_key_generated">New key generated or imported successfully. You can now tap \'Generate/Export Key\' button to share, copy to clipboard, or export the public key.</string>
 </resources>

@@ -26,9 +26,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Region;
 import android.graphics.drawable.DrawableContainer;
-import android.util.Log;
 
 /**
  * @author Michael A. MacDonald
@@ -67,6 +65,7 @@ public class AbstractBitmapDrawable extends DrawableContainer {
     }
     
     void draw(Canvas canvas, int xoff, int yoff) {
+
         try {
             canvas.drawBitmap(data.mbitmap, xoff, yoff, _defaultPaint);
             canvas.drawBitmap(softCursor, cursorRect.left, cursorRect.top, _defaultPaint);

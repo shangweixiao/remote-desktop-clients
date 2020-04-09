@@ -104,7 +104,7 @@
         <item>@string/connection_type_vnc_over_vencrypt</item>
         <item>@string/connection_type_vnc_over_stunnel</item>
     </string-array>
-    <string name="connection_type_caption">Тип подкл.</string>
+    <string name="connection_type_caption">Тип подключения</string>
     <string name="connection_type_rdp">RDP</string>
     <string name="connection_type_rdp_over_ssh">RDP через SSH</string>
     <string name="connection_type_spice">SPICE</string>
@@ -122,6 +122,7 @@
 
     <string name="ctrl_alt_del">Ctrl-Alt-Del</string>
 
+    <string name="default_input_mode">Режим ввода по умолчанию</string>
     <string name="delete_connection">Удалить подключение</string>
     <string name="delete_key">Удалить выбранный ключ</string>
     <string name="delete_key_list">Удалить список ключей</string>
@@ -145,7 +146,7 @@
     <string name="error_pick_correct_item">Пожалуйста, убедитесь, что вы выбрали правильный тип соединения.</string>
     <string name="error_rdp_authentication_failed">Ошибка авторизации RDP. Пожалуйста, проверьте имя пользователя и пароль RDP, после чего повторите подключение.</string>
     <string name="error_rdp_connection_failed">Не удалось подключиться к RDP-серверу. Подключение к сети было прервано, сервер RDP был выключен или отключен от сети, или сессия была прервана.</string>
-    <string name="error_rdp_unable_to_connect">Не удалось подключиться к RDP-серверу или авторизоваться. Пожалуйста, убедитесь, что параметры RDP-сервера, имя пользователя или пароль указаны верно, сервер включен и находится в пределах досягаемости сети, и на нем разрешено подключение через RDP.</string>
+    <string name="error_rdp_unable_to_connect">Не удалось подключиться к RDP-серверу. Пожалуйста, убедитесь, что параметры RDP-сервера указаны верно, сервер включен и находится в пределах досягаемости сети, и на нем разрешено подключение через RDP.</string>
     <string name="error_security_type">Сервер не предлагают поддерживаемый тип безопасности.</string>
     <string name="error_spice_unable_to_connect">Не удалось подключиться или авторизоваться. Пожалуйста, проверьте адрес сервера, имя пользователя, пароль, сертификат и объект.</string>
     <string name="error_ssh_could_not_exec_command">Не удалось выполнить удаленную команду.</string>
@@ -558,7 +559,9 @@
 
     <string name="shift_check">Shift</string>
 
-    <string name="shortcut_label">VNC Соединение</string>
+    <string name="shortcut_label_vnc">VNC Соединение</string>
+    <string name="shortcut_label_rdp">RDP Соединение</string>
+    <string name="shortcut_label_spice">SPICE Соединение</string>
 
     <string name="showkbd_label">Клавиатура</string>
 
@@ -580,7 +583,7 @@
     <string name="spice_ca_cert_path_hint">Путь к файлу сертификата</string>
     <string name="spice_ca_file_error_reading">Ошибка чтения файла сертификата. Пожалуйста, удостоверьтесь в целостности файла.</string>
     <string name="spice_ca_file_not_found">Файл не найден. Пожалуйста, введите существующее имя в текстовом поле (пример: /sdcard/ca-cert.pem).</string>
-    <string name="spice_cert_subject_hint">Субъект сертификата</string>
+    <string name="cert_subject">Субъект сертификата</string>
     <string-array name="spice_connection_type">
         <item>@string/connection_type_spice</item>
         <item>@string/connection_type_spice_over_ssh</item>

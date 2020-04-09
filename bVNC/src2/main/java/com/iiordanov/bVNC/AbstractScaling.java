@@ -27,6 +27,7 @@ import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
 import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 
 /**
  * @author Michael A. MacDonald
@@ -152,4 +153,8 @@ public abstract class AbstractScaling {
      * @param fy Focus Y of center of scale change
      */
     public void changeZoom(RemoteCanvasActivity activity, float scaleFactor, float fx, float fy) { }
+
+    public ImageView.ScaleType getScaleType() {
+        return scaleType;
+    }
 }

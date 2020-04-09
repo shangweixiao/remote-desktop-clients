@@ -25,9 +25,12 @@ import java.util.*;
 import java.net.*;
 import javax.net.ssl.*;
 
+import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
+
+import com.undatech.opaque.RfbConnectable;
 
 import java.security.*;
 import java.security.cert.*;
@@ -38,13 +41,16 @@ public class X509Tunnel extends TLSTunnelBase {
 
   private static final String TAG = "X509Tunnel";
   Certificate cert;
-  RemoteCanvas canvas;
+  RfbConnectable rfb;
+  Handler handler;
 
-  public X509Tunnel (Socket sock_, String certstr, RemoteCanvas canvas) throws CertificateException {
+  public X509Tunnel (Socket sock_, String certstr, Handler handler, RfbConnectable rfb)
+          throws CertificateException {
     super (sock_);
 
     Log.i(TAG, "X509Tunnel began.");
-    this.canvas = canvas;
+    this.rfb = rfb;
+    this.handler = handler;
     if (certstr != null && !certstr.equals("")) {
         CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
         ByteArrayInputStream in = new ByteArrayInputStream(Base64.decode(certstr, Base64.DEFAULT));
@@ -54,16 +60,32 @@ public class X509Tunnel extends TLSTunnelBase {
     Log.i(TAG, "X509Tunnel ended.");
   }
 
+  private boolean tlsIsOrNewerThan1_2(String[] protocols) {
+      boolean result = false;
+      for (String s : protocols) {
+          if (s.matches("TLSv1.[2-9]") || s.matches("TLSv[2-9].*")) {
+              result = true;
+          }
+      }
+      return result;
+  }
+
   protected void setParam (SSLSocket sock) {
     String[] supported;
     ArrayList<String> enabled = new ArrayList<String> ();
 
     supported = sock.getSupportedCipherSuites ();
 
+    String[] protocols = sock.getEnabledProtocols();;
+    android.util.Log.d(TAG, "Supported TLS Protocols: " + Arrays.toString(protocols));
+
     for (int i = 0; i < supported.length; i++) {
-      if (!supported[i].matches (".*DH_anon.*")) {
-        enabled.add (supported[i]);
-        Log.i(TAG, "Adding cipher: " + supported[i]);
+      if (!supported[i].matches(".*DH_anon.*") &&
+           !(tlsIsOrNewerThan1_2(protocols) && supported[i].equals("TLS_FALLBACK_SCSV"))) {
+          Log.d(TAG, "Adding cipher: " + supported[i]);
+          enabled.add (supported[i]);
+      } else {
+          android.util.Log.d(TAG, "Omitting cipher: " + supported[i]);
       }
     }
 
@@ -107,16 +129,16 @@ public class X509Tunnel extends TLSTunnelBase {
           if (cert == null) {
               // Send a message containing the certificate to our handler.
               Message m = new Message();
-              m.setTarget(canvas.handler);
+              m.setTarget(handler);
               m.what = Constants.DIALOG_X509_CERT;
               m.obj = certs[0];
-              canvas.handler.sendMessage(m);
+              handler.sendMessage(m);
 
-              synchronized (canvas) {
+              synchronized (rfb) {
                   // Block indefinitely until the x509 cert is accepted.
-                  while (!canvas.isCertificateAccepted()) {
+                  while (!rfb.isCertificateAccepted()) {
                       try {
-                          canvas.wait();
+                          rfb.wait();
                       } catch (InterruptedException e1) { e1.printStackTrace(); }
                   }
               }

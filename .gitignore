@@ -17,22 +17,24 @@ eclipse_projects/*/src/main/assets/fontconfig
 eclipse_projects/*/src/main/assets/ssl
 eclipse_projects/remote-desktop-clients-libs-*.tar.gz
 
-Opaque/jni/libs/deps/
-Opaque/jni/libs/tar/
-Opaque/gst-build-x86/
-Opaque/java/
-Opaque/debug/
-Opaque/release/
+remoteClientLib/jni/libs/deps/
+remoteClientLib/jni/libs/tar/
+remoteClientLib/jni/libs/FREERDP_BUILT
+remoteClientLib/gst-build-*/
+remoteClientLib/debug/
+remoteClientLib/release/
 */libs/sqlcipher-javadoc.jar
 */libs/sqlcipher.jar
 */libs/*/libgstreamer_android.so
 */libs/*/libspice.so
 */libs/*/libsqlcipher.so
-Opaque/src/main/assets/fontconfig/
-Opaque/src/main/assets/ssl/
+remoteClientLib/src/main/assets/fontconfig/
+remoteClientLib/src/main/assets/ssl/
 bVNC/debug/
 bVNC/gst-build-armeabi-v7a/
 bVNC/gst-build-x86/
+bVNC/gst-build-arm64-v8a/
+bVNC/gst-build-x86_64/
 bVNC/java/
 bVNC/libs/sqlcipher-javadoc.jar
 bVNC/libs/sqlcipher.jar
@@ -119,7 +121,8 @@ obj/
 .idea/dataSources.ids
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
-.idea/uiDesigner.xml
+.idea/caches
+.idea/codeStyles
 
 Opaque/.idea/libraries/
 Opaque/.idea/workspace.xml
@@ -139,6 +142,8 @@ Opaque/.idea/dataSources.ids
 Opaque/.idea/sqlDataSources.xml
 Opaque/.idea/dynamic.xml
 Opaque/.idea/uiDesigner.xml
+Opaque/.idea/caches
+Opaque/.idea/codeStyles
 
 # OS-specific files
 .DS_Store

@@ -22,7 +22,6 @@ package com.iiordanov.bVNC.dialogs;
 
 import com.iiordanov.bVNC.ConnectionBean;
 import com.iiordanov.bVNC.Database;
-import com.iiordanov.bVNC.bVNC;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -45,6 +44,7 @@ import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
 import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 
 /**
  * @author Michael A. MacDonald

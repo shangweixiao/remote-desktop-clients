@@ -7,7 +7,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.5.3'
     }
 }
 
@@ -19,8 +19,12 @@ allprojects {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
+
+    defaultConfig {
+        targetSdkVersion 28
+        minSdkVersion 14
+    }
     useLibrary 'org.apache.http.legacy'
 
     buildTypes {
@@ -30,12 +34,8 @@ android {
         }
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/java'
-    }
-
     sourceSets.main {
-        jniLibs.srcDirs += ['src/main/jniLibs']
+        java.srcDirs += 'src/main/java'
     }
 
     packagingOptions {
@@ -44,8 +44,8 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    //compile 'org.apache.httpcomponents:httpclient:4.5.5'
-    compile 'org.apache.httpcomponents:httpcore:4.4.9'
+    implementation project(':remoteClientLib')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.9'
 }
 

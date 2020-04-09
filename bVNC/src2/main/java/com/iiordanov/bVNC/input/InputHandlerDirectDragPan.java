@@ -29,20 +29,18 @@ import com.iiordanov.aRDP.*;
 import com.iiordanov.freeaRDP.*;
 import com.iiordanov.aSPICE.*;
 import com.iiordanov.freeaSPICE.*;
+import com.iiordanov.CustomClientPackage.*;
 import com.iiordanov.bVNC.Constants;
 import com.iiordanov.bVNC.RemoteCanvas;
 import com.iiordanov.bVNC.RemoteCanvasActivity;
-import com.iiordanov.bVNC.input.RemotePointer;
 
 public class InputHandlerDirectDragPan extends InputHandlerGeneric {
 	static final String TAG = "InputHandlerDirectDragPan";
 	public static final String ID = "TOUCH_ZOOM_MODE_DRAG_PAN";
 	
-	/**
-	 * @param c
-	 */
-	public InputHandlerDirectDragPan(RemoteCanvasActivity activity, RemoteCanvas canvas, Vibrator myVibrator) {
-		super(activity, canvas, myVibrator);
+	public InputHandlerDirectDragPan(RemoteCanvasActivity activity, RemoteCanvas canvas,
+									 RemotePointer pointer, Vibrator myVibrator) {
+		super(activity, canvas, pointer, myVibrator);
 	}
 
 	/*
@@ -76,7 +74,7 @@ public class InputHandlerDirectDragPan extends InputHandlerGeneric {
 		
 		myVibrator.vibrate(Constants.SHORT_VIBRATION);
 
-		canvas.displayShortToastMessage("Panning");
+		canvas.displayShortToastMessage(activity.getString(R.string.panning));
 		endDragModesAndScrolling();
 		panMode = true;
 	}

@@ -1,11 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
 
     defaultConfig {
-        targetSdkVersion 27
+        targetSdkVersion 28
+        minSdkVersion project.getProperties().get("SDK_VERSION")
+        manifestPlaceholders = [
+                custom_vnc_app_name: project.getProperties().get("CUSTOM_VNC_APP_NAME"),
+                custom_vnc_app_icon: project.getProperties().get("CUSTOM_VNC_APP_ICON")
+        ]
     }
 
     buildTypes {
@@ -17,28 +21,25 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src2/main/java'
-    }
-
-    sourceSets.main {
-        jniLibs.srcDirs += ['src2/main/jniLibs', 'src2/main/jniLibs_freerdp']
+        main.jniLibs.srcDirs += ['src2/main/jniLibs', 'src2/main/jniLibs_freerdp']
     }
 
     packagingOptions {
-        exclude 'lib/arm64-v8a/libsqlcipher.so'
         exclude 'lib/armeabi/libsqlcipher.so'
         exclude 'lib/mips64/libsqlcipher.so'
         exclude 'lib/mips/libsqlcipher.so'
-        exclude 'lib/x86_64/libsqlcipher.so'
     }
 }
 
 dependencies {
-    compile project(':pubkeyGenerator')
-    compile project(':freeRDPCore')
-    compile 'com.android.support:appcompat-v7:27.1.1'
-    compile 'com.android.support:support-v4:27.1.1'
-    compile 'com.android.support:support-vector-drawable:27.1.1'
-    compile 'net.zetetic:android-database-sqlcipher:3.5.9@aar'
-    compile files('libs/com.antlersoft.android.contentxml.jar')
-    compile files('libs/com.antlersoft.android.db.jar')
+    implementation project(':pubkeyGenerator')
+    implementation project(':freeRDPCore')
+    implementation project(':remoteClientLib')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:support-vector-drawable:27.1.1'
+    implementation 'net.zetetic:android-database-sqlcipher:3.5.9@aar'
+    implementation files('libs/com.antlersoft.android.contentxml.jar')
+    implementation files('libs/com.antlersoft.android.db.jar')
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.23'
 }

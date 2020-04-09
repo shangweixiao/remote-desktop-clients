@@ -52,30 +52,35 @@ import android.content.SharedPreferences.Editor;
 import android.content.Intent;
 import net.sqlcipher.database.SQLiteDatabase;
 import android.net.Uri;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.ViewConfiguration;
 
 public class Utils {
     private final static String TAG = "Utils";
+    private static AlertDialog alertDialog;
 
     public static void showYesNoPrompt(Context _context, String title, String message, OnClickListener onYesListener, OnClickListener onNoListener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-        builder.setTitle(title);
-        builder.setIcon(android.R.drawable.ic_dialog_info);
-        builder.setMessage(message);
-        builder.setCancelable(false);
-        builder.setPositiveButton("Yes", onYesListener);
-        builder.setNegativeButton("No", onNoListener);
-        boolean show = true;
-        if ( _context instanceof Activity ) {
-            Activity activity = (Activity) _context;
-            if (activity.isFinishing()) {
-                show = false;
+        try {
+            if (alertDialog != null && alertDialog.isShowing() && !isContextActivityThatIsFinishing(_context)) {
+                alertDialog.dismiss();
             }
+            AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+            builder.setTitle(title);
+            builder.setIcon(android.R.drawable.ic_dialog_info);
+            builder.setMessage(message);
+            builder.setCancelable(false);
+            builder.setPositiveButton(_context.getString(android.R.string.yes), onYesListener);
+            builder.setNegativeButton(_context.getString(android.R.string.no), onNoListener);
+            if (!(alertDialog != null && alertDialog.isShowing()) && !isContextActivityThatIsFinishing(_context)) {
+                alertDialog = builder.create();
+                alertDialog.show();
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
-        if (show)
-            builder.show();
     }
     
     private static final Intent docIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://code.google.com/p/android-vnc-viewer/wiki/Documentation")); 
@@ -105,34 +110,48 @@ public class Utils {
     }
 
     public static void showErrorMessage(Context _context, String message) {
-        showMessage(_context, "Error!", message, android.R.drawable.ic_dialog_alert, null);
+        showMessage(_context, _context.getString(R.string.error) + "!", message, android.R.drawable.ic_dialog_alert, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
     }
 
     public static void showFatalErrorMessage(final Context _context, String message) {
-        showMessage(_context, "Error!", message, android.R.drawable.ic_dialog_alert, new DialogInterface.OnClickListener() {
+        showMessage(_context, _context.getString(R.string.error) + "!", message, android.R.drawable.ic_dialog_alert, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((Activity) _context).finish();
+                dialog.dismiss();
+                if ( _context instanceof AppCompatActivity ) {
+                    ((AppCompatActivity) _context).finish();
+                } else if ( _context instanceof FragmentActivity ) {
+                    ((FragmentActivity) _context).finish();
+                } else if ( _context instanceof Activity ) {
+                    ((Activity) _context).finish();
+                }
             }
         });
     }
     
     public static void showMessage(Context _context, String title, String message, int icon, DialogInterface.OnClickListener ackHandler) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-        builder.setTitle(title);
-        builder.setMessage(Html.fromHtml(message));
-        builder.setCancelable(false);
-        builder.setPositiveButton("Acknowledged", ackHandler);
-        builder.setIcon(icon);
-        boolean show = true;
-        if ( _context instanceof Activity ) {
-            Activity activity = (Activity) _context;
-            if (activity.isFinishing()) {
-                show = false;
+        try {
+            if (alertDialog != null && alertDialog.isShowing() && !isContextActivityThatIsFinishing(_context)) {
+                alertDialog.dismiss();
             }
+            AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+            builder.setTitle(title);
+            builder.setMessage(Html.fromHtml(message));
+            builder.setCancelable(false);
+            builder.setPositiveButton(_context.getString(android.R.string.ok), ackHandler);
+            builder.setIcon(icon);
+            if (!(alertDialog != null && alertDialog.isShowing()) && !isContextActivityThatIsFinishing(_context)) {
+                alertDialog = builder.create();
+                alertDialog.show();
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
-        if (show)
-            builder.show();
     }
     
     /**
@@ -275,18 +294,57 @@ public class Utils {
     }
     
     public static boolean querySharedPreferenceBoolean(Context context, String key) {
-        SharedPreferences sp = context.getSharedPreferences(Constants.generalSettingsTag, Context.MODE_PRIVATE);
-        return sp.getBoolean(key, false);
+        boolean result = false;
+        if (context != null) {
+            SharedPreferences sp = context.getSharedPreferences(Constants.generalSettingsTag,
+                    Context.MODE_PRIVATE);
+            result = sp.getBoolean(key, false);
+        }
+        return result;
     }
-    
-    public static void toggleSharedPreferenceBoolean(Context context,String key) {
-        SharedPreferences sp = context.getSharedPreferences("generalSettings", Context.MODE_PRIVATE);
-        boolean state = sp.getBoolean(key, false);
-        Editor editor = sp.edit();
-        editor.putBoolean(key, !state);
-        editor.apply();
-        Log.i(TAG, "Toggled " + key + " " + String.valueOf(state));
+
+    public static String querySharedPreferenceString(Context context, String key, String dftValue) {
+        String result = dftValue;
+        if (context != null) {
+            SharedPreferences sp = context.getSharedPreferences(Constants.generalSettingsTag,
+                    Context.MODE_PRIVATE);
+            result = sp.getString(key, dftValue);
+        }
+        return result;
     }
-    
-    
+
+    public static void setSharedPreferenceString(Context context, String key, String value) {
+        if (context != null) {
+            SharedPreferences sp = context.getSharedPreferences(Constants.generalSettingsTag,
+                    Context.MODE_PRIVATE);
+            Editor editor = sp.edit();
+            editor.putString(key, value);
+            editor.apply();
+            Log.i(TAG, "Set: " + key + " to value: " + value);
+        }
+    }
+
+
+    public static void toggleSharedPreferenceBoolean(Context context, String key) {
+        if (context != null) {
+            SharedPreferences sp = context.getSharedPreferences(Constants.generalSettingsTag,
+                    Context.MODE_PRIVATE);
+            boolean state = sp.getBoolean(key, false);
+            Editor editor = sp.edit();
+            editor.putBoolean(key, !state);
+            editor.apply();
+            Log.i(TAG, "Toggled " + key + " " + String.valueOf(state));
+        }
+    }
+
+    static boolean isContextActivityThatIsFinishing(Context _context) {
+        boolean result = false;
+        if (_context instanceof Activity) {
+            Activity activity = (Activity)_context;
+            if (activity.isFinishing()) {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
