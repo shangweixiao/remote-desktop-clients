@@ -21,7 +21,7 @@ jobs:
         ANDROID_SDK: $ANDROID_HOME
       run: |
         sudo apt update
-        bash eclipse_projects/bVNC/prepare_project.sh $PROJECT ./
+        bash eclipse_projects/bVNC/prepare_project.sh $PROJECT $ANDROID_SDK
     - name: buil with gradle
       run: |
         ./gradlew assembleRelease
