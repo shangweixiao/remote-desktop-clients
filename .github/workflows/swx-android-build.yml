@@ -17,9 +17,13 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Gradle
+    - name: prepare project
       env:
         PROJECT: aSPICE
+        ANDROID_SDK: $ANDROID_HOME
       run: 
         bash eclipse_projects/bVNC/prepare_project.sh $PROJECT ./
-        
+    - name: buil with gradle
+      run: |
+        ./gradlew assembleRelease
+        find ./ -name *.apk
