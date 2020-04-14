@@ -18,4 +18,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ./gradlew build
+      env:
+        PROJECT: aSPICE
+      run: 
+        bash eclipse_projects/bVNC/prepare_project.sh $PROJECT ./
+        
