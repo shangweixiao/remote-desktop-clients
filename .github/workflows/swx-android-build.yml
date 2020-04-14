@@ -1,8 +1,6 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -21,7 +19,8 @@ jobs:
       env:
         PROJECT: aSPICE
         ANDROID_SDK: $ANDROID_HOME
-      run: 
+      run: |
+        sudo apt update
         bash eclipse_projects/bVNC/prepare_project.sh $PROJECT ./
     - name: buil with gradle
       run: |
